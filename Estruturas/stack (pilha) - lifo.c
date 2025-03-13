@@ -30,7 +30,7 @@ bool full(Stack *stack){
     Student *test = (Student *)malloc(sizeof(Student));
     if(test){
         free(test);
-        return false;  l
+        return false;  
     }
     return true;  
 }
@@ -102,9 +102,7 @@ void listar(Stack *stack){
     
     printf("\nListando alunos (do topo para base):\n");
     for(int i = stack->limit - 1; i >= 0; i--){
-        printf("Registro: %d - Nome: %s\n", 
-               stack->students[i].reg, 
-               stack->students[i].nome);
+        printf("Registro: %d - Nome: %s\n", stack->students[i].reg, stack->students[i].nome);
     }
 }
 
@@ -112,13 +110,13 @@ int main(){
     Stack pilha;
     reset(&pilha);
     Student aluno;
-    int opcao;
+    int op;
     
     do {
         printf("\n1. adicionar aluno\n2. remover aluno\n3. listar\n0. sair\n escolha: ");
-        scanf("%d", &opcao);
+        scanf("%d", &op);
         
-        switch(opcao){
+        switch(op){
             case 1:
                 if(!push(&pilha, &aluno)){
                     printf("\nsaindo...\n");
@@ -131,9 +129,8 @@ int main(){
                 if(!pop(&pilha, &aluno)){
                     printf("\nErro: Pilha vazia!\n");
                 } else {
-                    printf("\nAluno removido:\n");
-                    printf("Registro: %d - Nome: %s\n", 
-                           aluno.reg, aluno.nome);
+                    printf("\naluno removido:\n");
+                    printf("Registro: %d - Nome: %s\n", aluno.reg, aluno.nome);
                 }
                 break;
                 
@@ -142,15 +139,14 @@ int main(){
                 break;
                 
             case 4:
-                printf("\nEncerrando programa...\n");
-                // Libera memória antes de sair
+                printf("\nencerrando programa...\n");
                 if(pilha.students) free(pilha.students);
                 break;
                 
             default:
-                printf("\nOpcao invalida!\n");
+                printf("\nsaindo...\n");
         }
-    } while(opcao != 4);
+    } while(op != 4);
     
     return 0;
 }

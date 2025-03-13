@@ -43,13 +43,13 @@ void push(heap *h) {
     printf("Digite a idade: ");
     scanf("%d", &newNode->idade);
     printf("Digite o nome: ");
-    getchar(); // Limpar buffer do teclado
+    getchar(); 
     fgets(newNode->nome, sizeof(newNode->nome), stdin);
-    newNode->nome[strcspn(newNode->nome, "\n")] = '\0'; // Remover o '\n'
+    newNode->nome[strcspn(newNode->nome, "\n")] = '\0'; 
     newNode->pNext = NULL;
     newNode->pPrevious = NULL;
 
-    // Inserção na posição correta (ordenada por idade)
+
     if (h->pFirst == NULL) {
         h->pFirst = newNode;
         h->pLast = newNode;
@@ -62,15 +62,15 @@ void push(heap *h) {
             current = current->pNext;
         }
 
-        if (prev == NULL) { // Inserção no início
+        if (prev == NULL) { 
             newNode->pNext = h->pFirst;
             h->pFirst->pPrevious = newNode;
             h->pFirst = newNode;
-        } else if (current == NULL) { // Inserção no fim
+        } else if (current == NULL) {
             prev->pNext = newNode;
             newNode->pPrevious = prev;
             h->pLast = newNode;
-        } else { // Inserção no meio
+        } else { 
             prev->pNext = newNode;
             newNode->pPrevious = prev;
             newNode->pNext = current;
@@ -158,6 +158,6 @@ int main() {
         }
     } while (opcao != 0);
 
-    reset(&h); // Limpar heap antes de sair
+    reset(&h);
     return 0;
 }
